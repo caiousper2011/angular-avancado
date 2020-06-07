@@ -15,7 +15,6 @@
   </div>
 </div>
 
-
 <form autocomplete="off" [formGroup]="categotyForm" (submit)="submitForm()">
   <div class="card">
     <div class="card-header">
@@ -37,10 +36,17 @@
           <input type="text" class="form-control" id="description" formControlName="description">
         </div>
       </div>
+      <div class="alert alert-danger" *ngIf="serverErrorMessages">
+        <strong>Erro no Servidor:</strong>
+        <ul>
+          <li *ngFor="let error of serverErrorMessages">{{error}}</li>
+        </ul>
+      </div>
     </div>
     <div class="card-footer d-flex justify-content-center">
       <button [disabled]="submittingForm || categotyForm.invalid" type="submit"
         class="btn px-5 btn-primary">Salvar</button>
     </div>
+
   </div>
 </form>
