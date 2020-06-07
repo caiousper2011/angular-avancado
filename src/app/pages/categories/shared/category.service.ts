@@ -1,14 +1,14 @@
+import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, catchError, flatMap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Category } from './category.model';
-
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiPath: string = `${window.location.origin}/categories`;
+  private apiPath: string = `${environment.apiUrl}/categories`;
 
   constructor(private http: HttpClient) {}
 
