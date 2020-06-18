@@ -15,7 +15,7 @@ export class EntryService {
   getAll(): Observable<Entry[]> {
     return this.http
       .get<Entry[]>(this.apiPath)
-      .pipe(catchError(this.handleError), map(this.jsonDataToCategories));
+      .pipe(catchError(this.handleError), map(this.jsonDataToEntries));
   }
 
   getById(id: number): Observable<Entry> {
@@ -53,12 +53,17 @@ export class EntryService {
   }
 
   private jsonDataToEntry(jsonData: any): Entry {
-    return jsonData as Entry;
+    return Object.assign(new Entry(), jsonData);
   }
 
-  private jsonDataToCategories(jsonData: any[]): Entry[] {
+  private jsonDataToEntries(jsonData: any[]): Entry[] {
     const entries: Entry[] = [];
-    jsonData.forEach((item) => entries.push(item as Entry));
+
+    jsonData.forEach((item) => {
+      const entry = Object.assign(new Entry(), item);
+      entries.push(entry);
+    });
+
     return entries;
   }
 }
