@@ -23,11 +23,10 @@
     <div class="card-body">
 
       <div class="form-row">
-        {{entryForm.value | json}}
         <!-- type -->
         <div class="form-group col-md-2">
           <label for="type">Tipo</label>
-          <select name="type" id="type" class="form-control" formControlName="type">
+          <select id="type" class="form-control" formControlName="type">
             <option *ngFor="let option of typeOptions" [value]="option.value">{{option.text}}</option>
           </select>
           <div class="text-danger" *ngIf="entryForm.get('type').invalid && entryForm.get('type').dirty">
@@ -94,7 +93,7 @@
         <!-- categoryId -->
         <div class="form-group col-md-6">
           <label for="categoryId">Categoria</label>
-          <select type="text" id="categoryId" class="form-control" formControlName="categoryId">
+          <select id="categoryId" class="form-control" formControlName="categoryId">
             <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
           </select>
           <div class="text-danger" *ngIf="entryForm.get('categoryId').invalid && entryForm.get('categoryId').dirty">

@@ -109,8 +109,8 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
   get typeOptions(): Array<any> {
     return Object.entries(Entry.types).map(([value, text]) => ({
-      text,
       value,
+      text,
     }));
   }
 
