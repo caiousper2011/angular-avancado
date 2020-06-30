@@ -15,7 +15,7 @@ export abstract class BaseResourceList<T extends BaseResourceModel>
     );
   }
 
-  deleteCategory(resource: T): void {
+  deleteResource(resource: T): void {
     const mustDelete = confirm('Deseja realmente excluir este item?');
     if (!mustDelete) return;
     this.resourceService.delete(resource.id).subscribe(
