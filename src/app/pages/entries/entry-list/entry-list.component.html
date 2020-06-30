@@ -1,9 +1,7 @@
-<nav class="mb-5">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/">Início</a></li>
-    <li class="breadcrumb-item active"><a>Lançamentos</a></li>
-  </ol>
-</nav>
+<app-bread-crumb [items]="[
+{link: '/entries', text: 'Lançamentos'}
+]">
+</app-bread-crumb>
 
 <div class="row mb-5">
   <div class="col-md">
