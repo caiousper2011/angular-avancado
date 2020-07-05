@@ -1,18 +1,10 @@
-<nav class="mb-5">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/">Início</a></li>
-    <li class="breadcrumb-item active"><a>Lançamentos</a></li>
-  </ol>
-</nav>
+<app-bread-crumb [items]="[
+{link: '/entries', text: 'Lançamentos'}
+]">
+</app-bread-crumb>
 
-<div class="row mb-5">
-  <div class="col-md">
-    <h1 class="h2 border-left pl-2">Lançamentos</h1>
-  </div>
-  <div class="col-md">
-    <a class="btn btn-success float-right" routerLink="new">+ Novo Lançamento</a>
-  </div>
-</div>
+<app-page-header page-title="Lançamentos" button-class="btn-success" button-link="new" button-text="Novo Lançamento">
+</app-page-header>
 
 <div class="row">
   <div class="col-12">
@@ -26,23 +18,23 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let entry of entries">
+        <tr *ngFor="let resource of resources">
           <td>
-            <strong>{{entry.name}}</strong><br>
-            <small class="text-success">{{entry.date}}</small><br>
-            <small *ngIf="entry.description">{{entry.description}}</small>
+            <strong>{{resource.name}}</strong><br>
+            <small class="text-success">{{resource.date}}</small><br>
+            <small *ngIf="resource.description">{{resource.description}}</small>
           </td>
-          <td>{{entry.category.name}}</td>
+          <td>{{resource.category.name}}</td>
           <td class="text-right">
-            <strong [class.text-success]="entry.type == 'revenue'" [class.text-danger]="entry.type == 'expense'">
-              {{entry.amount}}
+            <strong [class.text-success]="resource.type == 'revenue'" [class.text-danger]="resource.type == 'expense'">
+              {{resource.amount}}
             </strong>
             <br>
-            <span class="badge badge-light">{{entry.paidText}}</span>
+            <span class="badge badge-light">{{resource.paidText}}</span>
           </td>
           <td class="text-center">
-            <a class=" btn btn-outline-info btn-sm py-1 px-3 mr-1" [routerLink]="[entry.id, 'edit']">Editar</a>
-            <button class="btn btn-sm btn-danger py-1 px-3" (click)="deleteEntry(entry)">Excluir</button>
+            <a class=" btn btn-outline-info btn-sm py-1 px-3 mr-1" [routerLink]="[resource.id, 'edit']">Editar</a>
+            <button class="btn btn-sm btn-danger py-1 px-3" (click)="deleteResource(resource)">Excluir</button>
           </td>
         </tr>
       </tbody>

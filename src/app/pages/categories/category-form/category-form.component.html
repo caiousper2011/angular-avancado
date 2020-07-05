@@ -1,21 +1,12 @@
-<nav class="mb-5">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/">Início</a></li>
-    <li class="breadcrumb-item"><a routerLink="/categories">Categorias</a></li>
-    <li class="breadcrumb-item active"><a>Formulário de Categoria</a></li>
-  </ol>
-</nav>
+<app-bread-crumb [items]="[
+{link: '/categories', text: 'Categorias'}, {text: pageTitle}
+]">
+</app-bread-crumb>
 
-<div class="row mb-5">
-  <div class="col-md">
-    <h1 class="h2 border-left pl-2">{{pageTitle}}</h1>
-  </div>
-  <div class="col-md">
-    <a class="btn btn-light float-right px-3" routerLink="/categories">Voltar</a>
-  </div>
-</div>
+<app-page-header [page-title]="pageTitle" button-class="btn-secondary" button-link="/categories" button-text="Voltar">
+</app-page-header>
 
-<form autocomplete="off" [formGroup]="categotyForm" (submit)="submitForm()">
+<form autocomplete="off" [formGroup]="resourceForm" (submit)="submitForm()">
   <div class="card">
     <div class="card-header">
       {{pageTitle}}
@@ -25,26 +16,17 @@
         <div class="form-group col-md-4">
           <label for="name">Nome</label>
           <input type="text" id="name" class="form-control" formControlName="name">
-          <div class="text-danger" *ngIf="categotyForm.get('name').invalid && categotyForm.get('name').dirty">
-            <div *ngIf="categotyForm.get('name').errors.required">Dado Obrigatório</div>
-            <div *ngIf="categotyForm.get('name').errors.minlength">Minímo de 2 caracteres</div>
-            <div *ngIf="categotyForm.get('name').errors.maxlength">Máximo de 50 caracteres</div>
-          </div>
+          <app-form-field-error [form-control]="resourceForm.get('name')"></app-form-field-error>
         </div>
         <div class="form-group col-md-8">
           <label for="description">Description</label>
           <input type="text" class="form-control" id="description" formControlName="description">
         </div>
       </div>
-      <div class="alert alert-danger" *ngIf="serverErrorMessages">
-        <strong>Erro no Servidor:</strong>
-        <ul>
-          <li *ngFor="let error of serverErrorMessages">{{error}}</li>
-        </ul>
-      </div>
+      <app-server-error-messages [messages]="serverErrorMessages"></app-server-error-messages>
     </div>
     <div class="card-footer d-flex justify-content-center">
-      <button [disabled]="submittingForm || categotyForm.invalid" type="submit"
+      <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
         class="btn px-5 btn-primary">Salvar</button>
     </div>
 
