@@ -3,15 +3,8 @@
 ]">
 </app-bread-crumb>
 
-
-<div class="row mb-5">
-  <div class="col-md">
-    <h1 class="h2 border-left pl-2">{{pageTitle}}</h1>
-  </div>
-  <div class="col-md">
-    <a class="btn btn-light float-right px-3" routerLink="/categories">Voltar</a>
-  </div>
-</div>
+<app-page-header [page-title]="pageTitle" button-class="btn-secondary" button-link="/categories" button-text="Voltar">
+</app-page-header>
 
 <form autocomplete="off" [formGroup]="resourceForm" (submit)="submitForm()">
   <div class="card">

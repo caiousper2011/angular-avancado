@@ -3,14 +3,8 @@
 ]">
 </app-bread-crumb>
 
-<div class="row mb-5">
-  <div class="col-md-9">
-    <h1 class="h2 border-left pl-2">{{pageTitle}}</h1>
-  </div>
-  <div class="col-md-3">
-    <a class="btn btn-light float-right px-3" routerLink="/entries">Voltar</a>
-  </div>
-</div>
+<app-page-header [page-title]="pageTitle" button-class="btn-secondary" button-link="/entries" button-text="Voltar">
+</app-page-header>
 
 <form autocomplete="off" [formGroup]="resourceForm" (submit)="submitForm()">
   <div class="card">
@@ -24,7 +18,7 @@
         <div class="form-group col-md-2">
           <label for="type">Tipo</label>
           <select id="type" class="form-control" formControlName="type">
-            <option *ngFor="let option of typeOptions" [value]="option.value">{{option.text}}</option>
+            <option *ngFor="let option of typeOptions" [ngValue]="option.value">{{option.text}}</option>
           </select>
           <div class="text-danger" *ngIf="resourceForm.get('type').invalid && resourceForm.get('type').dirty">
             <div *ngIf="resourceForm.get('type').errors.required">Dado Obrigatório</div>
