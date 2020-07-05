@@ -86,13 +86,7 @@
         </div>
 
       </div>
-
-      <div class="alert alert-danger" *ngIf="serverErrorMessages">
-        <strong>Erro no Servidor:</strong>
-        <ul>
-          <li *ngFor="let error of serverErrorMessages">{{error}}</li>
-        </ul>
-      </div>
+      <app-server-error-messages [messages]="serverErrorMessages"></app-server-error-messages>
     </div>
     <div class="card-footer d-flex justify-content-center">
       <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
